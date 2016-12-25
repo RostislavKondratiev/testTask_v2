@@ -1,0 +1,11 @@
+<i class="fa fa-arrow-circle-o-left backarrow" ng-click="$ctrl.back()" aria-hidden="true"></i>
+<div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+    <i class="fa fa-grav loginlogo col-xs-offset-3 col-xs-6" aria-hidden="true"></i>
+    <form ng-submit="$ctrl.loginfunc()" class="form-signin loginwrap col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 col-xs-offset-2 col-xs-8" role="form">
+        <h2 class="form-signin-heading loginheader">Please sign in</h2>
+        <input type="email" class="form-control" placeholder="Email address" required="" autofocus="" ng-model="$ctrl.login">
+        <input type="password" class="form-control" placeholder="Password" required="" ng-model="$ctrl.pass">
+        <p>Don't Have an Account? Click <a ui-sref="registration">here</a></p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>

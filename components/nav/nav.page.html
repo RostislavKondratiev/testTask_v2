@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default mynav">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <i class="fa fa-grav logo" aria-hidden="true"></i>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="main.welcome" ui-sref-active="active">Home</a></li>
+                <li><a ui-sref="main.goods" ui-sref-active="active">Goods</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="username">Welcome, {{$ctrl.username}}</li>
+                <li class="btn-group">
+                    <button class="btn btn-primary linlout" ng-if="!$ctrl.displayContent()" ng-click="$ctrl.log()">Log In</button>
+                    <button class="btn btn-info linlout" ng-if="!$ctrl.displayContent()" ng-click="$ctrl.regist()">Register</button>
+                </li>
+                <li><button class="btn btn-danger linlout" ng-if="$ctrl.displayContent()" ng-click="$ctrl.lout()">Log Out</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div ui-view></div>

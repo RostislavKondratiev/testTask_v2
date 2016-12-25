@@ -1,0 +1,9 @@
+<div class="col-xs-12 indent">
+    <div class="col-md-4 col-sm-6 col-xs-12 goodswrap" ng-repeat="good in $ctrl.goods">
+        <a ui-sref="main.selectedgood({ goodId: good.id })">
+        <div class="goodsimage" ng-style="{'background-image':'url({{good.image}})'}">
+            <h3 class="goodstitle">{{good.Title}}</h3>
+        </div>
+        </a>
+    </div>
+</div>
