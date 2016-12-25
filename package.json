@@ -13,7 +13,6 @@
     "angular-input-stars": "^1.5.5",
     "angular-local-storage": "^0.5.0",
     "bootstrap": "^3.3.7",
-    "json-server": "^0.9.4",
     "less": "^2.7.1"
   }
 }
