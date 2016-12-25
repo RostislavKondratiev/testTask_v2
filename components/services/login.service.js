@@ -16,15 +16,12 @@ function loginHandler(localStorageService, $state, dataservice) {
 
     self.authorize=function (login, pass) {
         dataservice.auth(login,pass).then(function (res) {
-            console.log(res.data[0]);
             if(res.data[0]==undefined){
                 isLogin=false;
                 alert("Wrong Login or Password");
             }else {
                 isLogin=true;
-                console.log(res.data[0].login);
                 localStorageService.set('isAuthorized',{login:res.data[0].login,isLogged:true});
-                console.log(isLogin);
                 $state.go("main.goods");
                 }
         })
