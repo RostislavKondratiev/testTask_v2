@@ -11,6 +11,7 @@ function selectedCtrl(dataservice, loginservice) {
         if(self.authstatus()){
            return 'Add Comment';
         }else {
+           self.Text=""; 
            return 'Please Login To Leave a Comment';
         }
     };
