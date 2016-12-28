@@ -22,7 +22,6 @@ function stateHandler($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state("main", {
             abstract:true,
-            // url:"/testwork",
             component:"navcomp"
         })
         .state("main.welcome",{
@@ -35,6 +34,7 @@ function stateHandler($stateProvider, $urlRouterProvider) {
             resolve:{
                 goods:function (dataservice) {
                     return dataservice.getGoods().then(function (res) {
+                        dataservice.productlist=res.data;
                         return res.data;
                     })
                 }
@@ -44,9 +44,16 @@ function stateHandler($stateProvider, $urlRouterProvider) {
             url:"/goods/{goodId}",
             component:"selectedcomp",
             resolve:{
-                data:function (dataservice, $transition$) {
-                    return dataservice.getSelectedGood($transition$.params().goodId).then(function (res) {
-                        return res.data
+                data:function (dataservice, $transition$, $state) {
+                    //Небольшой велосипед, так как в API нет выборки конкретного поста
+                    return dataservice.getGoods().then(function (res) {
+                        for (var i = 0; i < res.data.length; i++) {
+                            if (res.data[i].id == $transition$.params().goodId) {
+                                return res.data[i];
+                            }
+                        }
+                        alert('Page Doesnt Exist');
+                        $state.go('main.goods');
                     })
                 },
                 comments:function (dataservice, $transition$) {

@@ -4,39 +4,34 @@ loginHandler.$inject=['localStorageService','$state','dataservice'];
 
 function loginHandler(localStorageService, $state, dataservice) {
     var self=this;
-    var isLogin=false;
-
-    if(localStorageService.get('isAuthorized')){
-        isLogin=true;
-    } else isLogin=false;
-
+    
     self.isAuthorized=function () {
-        return isLogin;
+        return !!localStorageService.get('isAuthorized')
     };
 
     self.authorize=function (login, pass) {
         dataservice.auth(login,pass).then(function (res) {
-            if(res.data[0]==undefined){
-                isLogin=false;
-                alert("Wrong Login or Password");
-            }else {
-                isLogin=true;
-                localStorageService.set('isAuthorized',{login:res.data[0].login,isLogged:true});
+            if(!!res.data.token){
+                console.log("Auth success");
+                localStorageService.set('isAuthorized',{login:login,token:res.data.token});
+                dataservice.token = 'Token ' + res.data.token;
                 $state.go("main.goods");
-                }
+            }else {
+                alert(res.data.message);
+            }
         })
     };
 
+
     self.register=function (login, pass) {
-        dataservice.checklogin(login).then(function (res) {
-            if(!!res.data[0]){
-                alert('User Already Exist')
-            }else {
-                dataservice.newUser(login, pass).then(function (res) {
-                    $state.go('login')
-                })
+
+        dataservice.newUser(login,pass).then(function (res) {
+            if(res.data.success===false){
+               alert(res.data.message)
+           }else {
+                $state.go('login');
             }
-        })
+        });
     };
 
     self.getUserName=function () {
@@ -48,7 +43,6 @@ function loginHandler(localStorageService, $state, dataservice) {
     self.logout=function () {
         localStorageService.remove('isAuthorized');
         alert('Good Bye');
-        isLogin=false;
     };
     
     self.goBack=function () {
