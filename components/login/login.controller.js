@@ -8,6 +8,4 @@ function loginCtrl(loginservice) {
     self.loginfunc=function () {
         loginservice.authorize(self.login, self.pass)
     };
-    
-    self.back=loginservice.goBack;
 }

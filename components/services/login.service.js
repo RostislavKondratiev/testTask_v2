@@ -21,7 +21,7 @@ function loginHandler(localStorageService, $state, dataservice) {
             }
         })
     };
-    
+
     self.register=function (login, pass) {
         dataservice.newUser(login,pass).then(function (res) {
             if(res.data.success===false){
@@ -42,8 +42,4 @@ function loginHandler(localStorageService, $state, dataservice) {
         localStorageService.remove('isAuthorized');
         alert('Good Bye');
     };
-    
-    self.goBack=function () {
-        $state.go('main.goods');
-    }
 }

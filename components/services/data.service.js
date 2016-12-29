@@ -27,7 +27,6 @@ function dataHandler($http,localStorageService){
                 Authorization: "Token "+getToken()
             }
         })
-
     };
 
     self.newUser=function (login, pass) {
