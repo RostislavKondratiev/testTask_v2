@@ -21,10 +21,8 @@ function loginHandler(localStorageService, $state, dataservice) {
             }
         })
     };
-
-
+    
     self.register=function (login, pass) {
-
         dataservice.newUser(login,pass).then(function (res) {
             if(res.data.success===false){
                alert(res.data.message)

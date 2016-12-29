@@ -21,7 +21,7 @@ function dataHandler($http,localStorageService){
     self.postComment=function (gid, comment) {
         return $http({
             method:"POST",
-            url:'http://smktesting.herokuapp.com/api/reviews/'+gid,
+            url:path+'reviews/'+gid,
             data:{rate:comment.rate, text:comment.text},
             headers:{
                 Authorization: "Token "+getToken()
@@ -31,10 +31,10 @@ function dataHandler($http,localStorageService){
     };
 
     self.newUser=function (login, pass) {
-        return $http.post('http://smktesting.herokuapp.com/api/register/',{username:login,password:pass})
+        return $http.post(path+'register/',{username:login,password:pass})
     };
     
     self.auth=function (login, pass) {
-        return $http.post('http://smktesting.herokuapp.com/api/login/',{username:login, password:pass})
+        return $http.post(path+'login/',{username:login, password:pass})
     }
 }
